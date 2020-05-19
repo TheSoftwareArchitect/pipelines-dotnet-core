@@ -1,0 +1,18 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add more steps that run tests, create a NuGet package, deploy, and more:
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+    #Note: Buildkit for docker is not supported on Windows hosts
+  DOCKER_BUILDKIT: 1
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
